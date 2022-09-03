@@ -22,7 +22,7 @@
 
 ## About The Project
 
-The objective of the project is to practice the knowledge from youtube course on Node.JS.
+The objective of the project is to practice the knowledge from [youtube course on Node.JS](https://www.youtube.com/playlist?list=PL3aEngjGbYhnrRfZKMxzn79qdgPxL7OWM).
 
 <!-- BUILT WITH -->
 
