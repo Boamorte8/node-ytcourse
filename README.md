@@ -15,22 +15,14 @@
 </div> -->
 
 <div align="center">
-  <h1>Node.JS Template</h1>
-  <p>
-    Template for the projects developed in the Node.JS course of the LearnThis Academy elearning platform.
-    <br />
-    <br />
-    <a style='font-size:16px' href="https://learnthisacademy.com" target='_blank'><strong>Explore LearnThis</strong></a>
-    <br />
-    <br />
-  </p>
+  <h1>Node.JS Youtbe Course</h1>
 </div>
 
 <!-- BUILT WITH -->
 
 ## About The Project
 
-The objective of the project is to provide a base project with the minimum necessary tools to develop a project based on Node.JS.
+The objective of the project is to practice the knowledge from youtube course on Node.JS.
 
 <!-- BUILT WITH -->
 
