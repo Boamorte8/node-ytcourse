@@ -1,26 +1,38 @@
-import { createServer } from 'http';
+// import { createServer } from 'http';
+import express from 'express';
 
 console.clear();
 
-const httpServer = createServer((req, res) => {
-  console.log(req.method);
-  console.log(req.url);
+const PORT = 3000;
+const expressApp = express();
+
+expressApp.use(express.json());
+expressApp.use(express.text());
+
+// Exist a method for every method but also exist the all method to handle all the methods in a function
+// example: expressApp.all('/mi-account', (req, res) => {
+// expressApp.get('/mi-account', (req, res) => {
+//   res.send('My personal account');
+// });
+expressApp.get('/item/:iditem', (req, res) => {
+  // console.log(req.params.iditem);
   console.log(req.headers);
-
-  // body/payload is missing
-  let data = '';
-  let chunkIndex = 0;
-  req.on('data', (chunk) => {
-    data += chunk;
-    chunkIndex++;
-    console.log(chunkIndex);
-  });
-  req.on('end', () => {
-    console.log(data);
-    console.log('Received request');
-
-    res.end('Received bro');
-  });
+  console.log(req.get('Content-Type'));
+  // res.status(401).send({
+  //   errorMessage: 'Unauthorized access',
+  // });
+  res.send(`The item has id ${req.params.iditem}`);
 });
 
-httpServer.listen(3000);
+expressApp.post('/item/:iditem', (req, res) => {
+  console.log(req.body);
+  console.log(req.query);
+  res.send(`POST - The item has id ${req.params.iditem}`);
+});
+
+expressApp.put('/product', (req, res) => {
+  console.log(req.body);
+  res.send(`PUT - Product`);
+});
+
+expressApp.listen(PORT, () => console.log(`Server listening at port ${PORT}`));
