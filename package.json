@@ -32,9 +32,6 @@
     "nodemon": "2.0.19",
     "prettier": "2.7.1"
   },
-  "imports": {
-    "#Lib/*": "./src/lib/*"
-  },
   "lint-staged": {
     "*.js": "eslint --fix",
     "*.{js,md}": "prettier --write"

@@ -24,6 +24,8 @@
 
 The objective of the project is to practice the knowledge from [youtube course on Node.JS](https://www.youtube.com/playlist?list=PL3aEngjGbYhnrRfZKMxzn79qdgPxL7OWM).
 
+The branch feat/create-server has things from [learnthis course on Node.JS](https://learnthisacademy.com/curso-nodejs-desde-cero)
+
 <!-- BUILT WITH -->
 
 ## Built With
