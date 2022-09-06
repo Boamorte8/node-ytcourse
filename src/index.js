@@ -10,6 +10,11 @@ const expressApp = express();
 expressApp.use(express.json());
 expressApp.use(express.text());
 
-expressApp.use(accountRouter);
+// If you don't put the first param the encapsulation doesn't work properly
+expressApp.use('/account', accountRouter);
+
+expressApp.get('/root', (req, res) => {
+  res.send('This is the root endpoint');
+});
 
 expressApp.listen(PORT, () => console.log(`Server listening at port ${PORT}`));
