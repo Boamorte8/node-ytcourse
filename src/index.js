@@ -15,7 +15,7 @@ httpServer.addListener('request', (req, res) => {
   console.log('From url', url.pathname);
 
   if (req.method === 'GET') {
-    if (url.pathname === '/users') return res.end('Users');
+    if (url.pathname === '/users') return res.end('GET - Users');
   }
 
   return res.end('Hello from basic nodejs server');
