@@ -12,6 +12,8 @@ export const USERS_DB = [
     gender: 'male',
     company: 'ZOID',
     email: 'wallacewells@zoid.com',
+    password: 'test1234',
+    role: 'user',
     phone: '+1 (808) 497-3753',
     address: '477 Chester Court, Tecolotito, Mississippi, 7820',
     about:
@@ -58,6 +60,8 @@ export const USERS_DB = [
     gender: 'female',
     company: 'MEDIFAX',
     email: 'lucillechapman@medifax.com',
+    password: 'test5678',
+    role: 'admin',
     phone: '+1 (904) 422-3827',
     address: '408 Williams Place, Fairlee, Nebraska, 8717',
     about:
@@ -96,6 +100,8 @@ export const USERS_DB = [
     gender: 'female',
     company: 'EXODOC',
     email: 'florenceshepard@exodoc.com',
+    password: 'test0987',
+    role: 'user',
     phone: '+1 (907) 450-3751',
     address: '238 Kingsway Place, Cloverdale, New Jersey, 301',
     about:
@@ -134,6 +140,8 @@ export const USERS_DB = [
     gender: 'male',
     company: 'REMOLD',
     email: 'jordanrobinson@remold.com',
+    password: 'test2345',
+    role: 'user',
     phone: '+1 (998) 501-2394',
     address: '968 Meserole Street, Dundee, Virginia, 4722',
     about:
@@ -172,6 +180,8 @@ export const USERS_DB = [
     gender: 'female',
     company: 'ATGEN',
     email: 'nanniemonroe@atgen.com',
+    password: 'test3456',
+    role: 'user',
     phone: '+1 (801) 534-3802',
     address: '611 Bliss Terrace, Witmer, Wisconsin, 316',
     about:

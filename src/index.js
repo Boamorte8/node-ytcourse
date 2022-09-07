@@ -1,6 +1,8 @@
-import express from 'express';
 import dotenv from 'dotenv';
+import express from 'express';
+
 import accountRouter from './routes/account.js';
+import authRouter from './routes/auth.js';
 
 dotenv.config();
 
@@ -12,6 +14,7 @@ expressApp.use(express.text());
 
 // If you don't put the first param the encapsulation doesn't work properly
 expressApp.use('/account', accountRouter);
+expressApp.use('/auth', authRouter);
 
 expressApp.get('/root', (req, res) => {
   res.send('This is the root endpoint');

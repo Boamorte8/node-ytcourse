@@ -1,9 +1,10 @@
-import express from 'express';
+import { Router } from 'express';
 import { USERS_DB } from '../ddbb.js';
 
 // This is a way to encapsulate a group of endpoints
-const accountRouter = express.Router();
+const accountRouter = Router();
 
+// This is a example middleware
 accountRouter.use((req, res, next) => {
   console.log(req.ip);
 
@@ -17,6 +18,7 @@ accountRouter.get('/:guid', (req, res) => {
   if (!account) return res.status(404).send('No account found');
   return res.send(account);
 });
+
 // Create a new account with guid and name
 accountRouter.post('', (req, res) => {
   const { guid, name } = req.body;
