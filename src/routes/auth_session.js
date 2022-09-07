@@ -29,7 +29,6 @@ authSessionRouter.post('/login', (req, res) => {
   }
 });
 
-// Authorized endpoint for admin
 authSessionRouter.get('/profile', (req, res) => {
   const { cookies } = req;
 
@@ -50,6 +49,23 @@ authSessionRouter.get('/profile', (req, res) => {
   } catch (error) {
     return res.status(401).send(`${error}`);
   }
+});
+
+authSessionRouter.get('/logout', (req, res) => {
+  const { cookies } = req;
+
+  if (!cookies.sessionId) return res.sendStatus(401);
+
+  const sessionIndex = sessions.findIndex(
+    (session) => session.sessionId === cookies.sessionId
+  );
+
+  if (sessionIndex === -1)
+    return res.status(401).send('User not authenticated');
+
+  res.clearCookie('sessionId', { maxAge: 10 });
+
+  return res.send('Logout successfully');
 });
 
 export default authSessionRouter;
