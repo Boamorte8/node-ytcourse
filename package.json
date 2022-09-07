@@ -40,7 +40,9 @@
     "*.{js,md}": "prettier --write"
   },
   "dependencies": {
+    "cookie-parser": "1.4.6",
     "dotenv": "16.0.2",
-    "express": "4.18.1"
+    "express": "4.18.1",
+    "nanoid": "4.0.0"
   }
 }
