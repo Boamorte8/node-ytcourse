@@ -1,8 +1,8 @@
 {
-  "name": "node-template",
+  "name": "node-courseyt",
   "version": "1.0.0",
   "type": "module",
-  "description": "Base template for projects developed on the Node.JS Course by LearnThis",
+  "description": "Project base for exercise on NodeJS Youtube Course",
   "scripts": {
     "dev": "nodemon src/index.js",
     "start": "node src/index.js",
