@@ -3,12 +3,13 @@ import { jwtVerify, SignJWT } from 'jose';
 
 import getUser from '../helpers/get-user.js';
 import loginEmail from '../helpers/login-email.js';
+import validateLoginDTO from '../dto/validate_login_dto.js';
 
 const authTokenRouter = Router();
 const encoder = new TextEncoder();
 
 // Authenticated endpoint
-authTokenRouter.post('/login', async (req, res) => {
+authTokenRouter.post('/login', validateLoginDTO, async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password)
@@ -52,23 +53,6 @@ authTokenRouter.post('/profile', async (req, res) => {
   } catch (error) {
     return res.status(401).send(`${error}`);
   }
-});
-
-authTokenRouter.get('/logout', (req, res) => {
-  // const { cookies } = req;
-
-  // if (!cookies.sessionId) return res.sendStatus(401);
-
-  // const sessionIndex = sessions.findIndex(
-  //   (session) => session.sessionId === cookies.sessionId
-  // );
-
-  // if (sessionIndex === -1)
-  //   return res.status(401).send('User not authenticated');
-
-  // res.clearCookie('sessionId', { maxAge: 10 });
-
-  return res.send('Logout successfully');
 });
 
 export default authTokenRouter;
