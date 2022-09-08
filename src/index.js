@@ -1,6 +1,7 @@
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 import express from 'express';
+import mongoose from 'mongoose';
 
 import accountRouter from './routes/account.js';
 import authRouter from './routes/auth.js';
@@ -27,4 +28,12 @@ expressApp.get('/root', (req, res) => {
   res.send('This is the root endpoint');
 });
 
-expressApp.listen(PORT, () => console.log(`Server listening at port ${PORT}`));
+const bootstrap = async () => {
+  await mongoose.connect(process.env.MONGODB_URL);
+
+  expressApp.listen(PORT, () =>
+    console.log(`Server listening at port ${PORT}`)
+  );
+};
+
+bootstrap();

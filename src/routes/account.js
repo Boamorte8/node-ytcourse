@@ -1,5 +1,6 @@
 import { Router } from 'express';
-import { USERS_DB } from '../ddbb.js';
+
+import UserModel from '../schemas/user-schema.js';
 
 // This is a way to encapsulate a group of endpoints
 const accountRouter = Router();
@@ -12,45 +13,63 @@ accountRouter.use((req, res, next) => {
 });
 
 // Get details of an account
-accountRouter.get('/:guid', (req, res) => {
+accountRouter.get('/:guid', async (req, res) => {
   const { guid } = req.params;
-  const account = USERS_DB.find((user) => user.guid === guid);
-  if (!account) return res.status(404).send('No account found');
-  return res.send(account);
+  try {
+    const account = await UserModel.findById(guid).exec();
+    if (!account) return res.status(404).send('No account found');
+    return res.send(account);
+  } catch (error) {
+    return res.status(400).send('Error getting account');
+  }
 });
 
 // Create a new account with guid and name
-accountRouter.post('', (req, res) => {
+accountRouter.post('', async (req, res) => {
   const { guid, name } = req.body;
-  const accountIndex = USERS_DB.findIndex((user) => user.guid === guid);
-  if (accountIndex !== -1)
-    return res.status(409).send('Account already exists');
-  if (!name || !guid) return res.status(400).send('Name and guid are required');
 
-  USERS_DB.push({ guid, name });
-  return res.send('Account created successfully');
+  try {
+    const user = await UserModel.findById(guid).exec();
+    if (user) return res.status(409).send('Account already exists');
+    if (!name || !guid)
+      return res.status(400).send('Name and guid are required');
+
+    const newUser = new UserModel({ _id: guid, name });
+
+    await newUser.save();
+    return res.send('Account created successfully');
+  } catch (error) {
+    return res.status(400).send('Error creating account');
+  }
 });
 
 // Update the name of an account
-accountRouter.patch('/:guid', (req, res) => {
+accountRouter.patch('/:guid', async (req, res) => {
   const { guid } = req.params;
   const { name } = req.body;
-  const accountIndex = USERS_DB.findIndex((user) => user.guid === guid);
-  if (accountIndex === -1) return res.status(404).send('No account found');
   if (!name) return res.status(400).send('Name is required');
-
-  USERS_DB[accountIndex].name = name;
-  return res.send('Account updated successfully');
+  try {
+    const account = await UserModel.findById(guid).exec();
+    if (!account) return res.status(404).send('No account found');
+    account.name = name;
+    await account.save();
+    return res.send('Account updated successfully');
+  } catch (error) {
+    return res.status(400).send('Error getting account');
+  }
 });
 
 // Delete an account
-accountRouter.delete('/:guid', (req, res) => {
+accountRouter.delete('/:guid', async (req, res) => {
   const { guid } = req.params;
-  const accountIndex = USERS_DB.findIndex((user) => user.guid === guid);
-  if (accountIndex === -1) return res.status(404).send('No account found');
-
-  USERS_DB.splice(accountIndex, 1);
-  return res.send('Account deleted successfully');
+  try {
+    const account = await UserModel.findById(guid).exec();
+    if (!account) return res.status(404).send('No account found');
+    await account.remove();
+    return res.send('Account deleted successfully');
+  } catch (error) {
+    return res.status(400).send('Error deleting account');
+  }
 });
 
 export default accountRouter;
